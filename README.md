@@ -25,7 +25,7 @@ into section PropertyGroup:
 		  <RuntimeIdentifiers>win7-x64;win7-x86;ubuntu.16.04-x64;</RuntimeIdentifiers>
 		  <SuppressDockerTargets>True</SuppressDockerTargets>
 		  
-  New section look look like here:
+  New section look like here:
 	
 	       <PropertyGroup>
 			<AssemblyTitle>MicroServiceBePro.StaticTables</AssemblyTitle>
@@ -35,7 +35,7 @@ into section PropertyGroup:
 			
 			<PreserveCompilationContext>true</PreserveCompilationContext>
 			<RuntimeIdentifiers>win7-x64;win7-x86;ubuntu.16.04-x64;</RuntimeIdentifiers>
-		    <SuppressDockerTargets>True</SuppressDockerTargets>
+			<SuppressDockerTargets>True</SuppressDockerTargets>
 			
 
 			<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
@@ -43,7 +43,7 @@ into section PropertyGroup:
 			<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		</PropertyGroup>
 	
-1.2) Visual Studio 2017:
+1.2) Run Visual Studio 2017 and open project:
 
     Do operation:
        - Clean Solution
@@ -53,21 +53,22 @@ into section PropertyGroup:
 	   
 1.2.3 - Tools -> Nuget Package Manager
 
-	       find add remove package: 
+       find add remove package: 
 		       Microsoft.ApplicationInsights.AspNetCore.
-			This package using for Microsoft Azure server. 
+       This package using for Microsoft Azure server. 
 			
 1.2.4 Remove from Startup.cs ( Startup class ) next code:
 
             if (env.IsDevelopment())
             {
-                // This will push telemetry data through Application Insights pipeline faster, allowing you to view results immediately.
+                // This will push telemetry data through Application 
+				// Insights pipeline faster, allowing you to view results immediately.
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }		
 			
 1.2.5 Do it: Clean Solution, Rebuild All	
 		
-1.3 Run Command Prompt ( cmd )
+1.3 Run on the Command Prompt ( cmd )
      		
 		dotnet publish -c Release -r ubuntu.16.04-x64
 		
@@ -80,8 +81,9 @@ into section PropertyGroup:
          sudo mkdir /var/www/beprotb
 		 
 2.2 copy all files 
-	      from:   bin/Release/netcoreapp1.1/ubuntu.16.04-x64/publish	
-            to:	  /var/www/beprotb	 
+
+   from:   bin/Release/netcoreapp1.1/ubuntu.16.04-x64/publish	
+   to:	  /var/www/beprotb	 
 
 
 2.3  make a file executable and runnable on the linux server 
@@ -100,10 +102,9 @@ into section PropertyGroup:
 	  
 	       /lib/systemd/system/beprotb.service
 		   
-		   where beprotb - service name 
+    where beprotb - service name 
 
-			using editor : nano
-			
+	
 			sudo nano /lib/systemd/system/beprotb.service
 			
 file context:
@@ -135,22 +136,22 @@ file context:
 
 			sudo service beprotb status	
 
-					you can use next command: 
+you can use next command: 
 
-							sudo service beprotb stop
+			sudo service beprotb stop
 
-							sudo service beprotb start
+			sudo service beprotb start
 
-							sudo service beprotb restart
+			sudo service beprotb restart
 
-							sudo service beprotb status
+			sudo service beprotb status
 
 
-### Create appache Virtual Host 
+### Create Apache Virtual Host 
 
 2.10.1 Start by copying the file for the first domain:
 
-					sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/beprotb.conf
+	sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/beprotb.conf
 
 
 2.10.2 Edit site definition
@@ -159,7 +160,7 @@ file context:
 
 					sudo nano beprotb.conf
 					
-					file context:
+    file context:
 
 						<VirtualHost *:80>
 							ProxyPreserveHost On
