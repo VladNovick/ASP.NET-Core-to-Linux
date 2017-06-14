@@ -8,7 +8,7 @@ In this article, i'm going to review the steps you need to know in order to conv
 
 into section PropertyGroup:
 
-       `<PropertyGroup>`
+       <PropertyGroup>
 			<AssemblyTitle>MicroServiceBePro.StaticTables</AssemblyTitle>
 			<TargetFramework>netcoreapp1.1</TargetFramework>
 			<AssemblyName>StaticLoader</AssemblyName>
@@ -44,18 +44,20 @@ into section PropertyGroup:
 		</PropertyGroup>
 	
 1.2) Visual Studio 2017:
+
     Do operation:
-       1.2.1 - Build -> Clean Solution
-	   1.2.2 - Build -> Rebuild Solution
+       - Clean Solution
+	   - Rebuild Solution
 	   
-	   Look project errors
+	Look project errors
 	   
-	   1.2.3 - Tools -> Nuget Package Manager
+1.2.3 - Tools -> Nuget Package Manager
+
 	       find add remove package: 
 		       Microsoft.ApplicationInsights.AspNetCore.
 			This package using for Microsoft Azure server. 
 			
-	    1.2.4 Remove from Startup.cs ( Startup class ) next code:
+1.2.4 Remove from Startup.cs ( Startup class ) next code:
 
             if (env.IsDevelopment())
             {
@@ -63,34 +65,38 @@ into section PropertyGroup:
                 builder.AddApplicationInsightsSettings(developerMode: true);
             }		
 			
-		1.2.5 Do it: Clean Solution, Rebuild All	
+1.2.5 Do it: Clean Solution, Rebuild All	
 		
-1.3) Run Command Prompt ( cmd )
+1.3 Run Command Prompt ( cmd )
      		
 		dotnet publish -c Release -r ubuntu.16.04-x64
+		
+		
 
 ## II Modify Ubuntu Server.
 
-     2.1 Create application store foder
+2.1 Create application store foder
 
          sudo mkdir /var/www/beprotb
 		 
-	 2.2 copy all files 
+2.2 copy all files 
 	      from:   bin/Release/netcoreapp1.1/ubuntu.16.04-x64/publish	
             to:	  /var/www/beprotb	 
 
 
-     2.3  make a file executable and runnable on the linux server 
+2.3  make a file executable and runnable on the linux server 
 
 			sudo chmod +x BeproTB
 
 
-      2.4  test application
+2.4  test application
 
 			sudo ./BeproTB
 
 
-	  2.5  create service definition file:
+### Create linux service			
+			
+2.5  create service definition file:
 	  
 	       /lib/systemd/system/beprotb.service
 		   
@@ -100,7 +106,7 @@ into section PropertyGroup:
 			
 			sudo nano /lib/systemd/system/beprotb.service
 			
-			file context:
+file context:
 			
 				[Unit]
 					Description= BeproTB
@@ -115,17 +121,17 @@ into section PropertyGroup:
 					[Install]
 				WantedBy=bepro.target
 	  
-	   2.6  make folder /etc/systemd/system/bepro.target.wants
+2.6  make folder /etc/systemd/system/bepro.target.wants
 
-       2.7  enable service :
+2.7  enable service :
 
 			sudo  systemctl enable /lib/systemd/system/beprotb.service
 			
-		2.8 start service :
+2.8 start service :
 				
 			sudo service beprotb start
 
-		2.9 check service status:
+2.9 check service status:
 
 			sudo service beprotb status	
 
@@ -140,14 +146,14 @@ into section PropertyGroup:
 							sudo service beprotb status
 
 
-		2.10 Create New appache Virtual Host File
+### Create appache Virtual Host 
 
-			2.10.1 Start by copying the file for the first domain:
+2.10.1 Start by copying the file for the first domain:
 
 					sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/beprotb.conf
 
 
-			2.10.2 Edit site definition
+2.10.2 Edit site definition
 			
 					cd /etc/apache2/sites-available
 
@@ -162,23 +168,23 @@ into section PropertyGroup:
 							ServerName beprotb.sgcombo.com
 						</VirtualHost>
 
-			2.10.3 After you create virtual host file, you must enable them.
+2.10.3 After you create virtual host file, you must enable them.
 
 					sudo a2ensite beprotb.conf
 					
-		    2.10.4 Restart Apache
+2.10.4 Restart Apache
 
 					sudo service apache2 restart
 
-						You can use command:
+You can use command:
 
-								sudo service apache2 stop
+			sudo service apache2 stop
 
-								sudo service apache2 start
+			sudo service apache2 start
 
-								sudo service apache2 restart
+			sudo service apache2 restart
 
-								sudo service apache2 status
+			sudo service apache2 status
 
 
 
