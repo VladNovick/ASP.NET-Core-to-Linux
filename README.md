@@ -6,7 +6,7 @@ In this article, i'm going to review the steps you need to know in order to conv
 
 1.1 ) modify all project files: <project name>.csproj
 
-into section PropertyGroup:
+Insert Linux runtime options into PropertyGroup section:
 
        <PropertyGroup>
 			<AssemblyTitle>MicroServiceBePro.StaticTables</AssemblyTitle>
@@ -20,12 +20,12 @@ into section PropertyGroup:
 			<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		</PropertyGroup>
   
-  insert additional line :
+  insert new line :
   
 		  <RuntimeIdentifiers>win7-x64;win7-x86;ubuntu.16.04-x64;</RuntimeIdentifiers>
 		  <SuppressDockerTargets>True</SuppressDockerTargets>
 		  
-  New section look like here:
+  PropertyGroup section look like here:
 	
 	       <PropertyGroup>
 			<AssemblyTitle>MicroServiceBePro.StaticTables</AssemblyTitle>
@@ -50,7 +50,7 @@ Do operation
        - Clean Solution
 	   - Rebuild Solution
 	   
-	Look project errors
+	You got  project errors. Correction:
 	   
 1.2.3 - Tools -> Nuget Package Manager
 
