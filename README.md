@@ -1,8 +1,8 @@
-# Convert-ASP.NET-Core-Application-as-Linux-Service
+#Run ASP.NET Core Application as Daemon (System Service) for Linux using Apache
 
 In this article, i'm going to review the steps you need to know in order to convert your DotNet Core application and deploy to a Linux server running Apache
 
-## I Modify Dot Net Core project:
+##             Modify Dot Net Core project:
 
 1.1 ) modify all project files: <project name>.csproj
 
@@ -20,7 +20,7 @@ Insert Linux runtime options into PropertyGroup section:
 			<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
 		</PropertyGroup>
   
-  insert new line :
+  insert new lines :
   
 		  <RuntimeIdentifiers>win7-x64;win7-x86;ubuntu.16.04-x64;</RuntimeIdentifiers>
 		  <SuppressDockerTargets>True</SuppressDockerTargets>
@@ -50,7 +50,6 @@ Do operation
        - Clean Solution
 	   - Rebuild Solution
 	   
-	You got  project errors. Correction:
 	   
 1.2.3 - Tools -> Nuget Package Manager
 
@@ -67,37 +66,37 @@ Do operation
           builder.AddApplicationInsightsSettings(developerMode: true);
        }		
 			
-1.2.5 Do it: Clean Solution, Rebuild All	
+1.2.5  Clean Solution, Rebuild All	
 		
-1.3 Run on the Command Prompt ( cmd ) an build linux executable feles
+1.3 Run on the Command Prompt ( cmd ) and build linux executable feles
      		
 		dotnet publish -c Release -r ubuntu.16.04-x64
 		
 		
 
-## II Modify Ubuntu Server.
+##                 Modify Ubuntu Server.
 
-2.1 Create application store foder
+2.1 Create application folder
 
          sudo mkdir /var/www/beprotb
 		 
-2.2 copy all files , using ftp client
+2.2 Upload Files using FTP Client application ( Like FileZilla )
 
 		from:   bin/Release/netcoreapp1.1/ubuntu.16.04-x64/publish	
 		to:	  /var/www/beprotb	 
 
 
-2.3  make a file as executable 
+2.3  Using chmod u+x scriptname make the application executable.
 
 			sudo chmod +x BeproTB
 
 
-2.4  run and test you application
+2.4  Launching Your App on Linux . Performance test your app before launch as service.
 
 			sudo ./BeproTB
 
 
-### Create linux service			
+###               Create linux service			
 			
 2.5  create service definition file:
 	  
@@ -145,7 +144,7 @@ you can use next command:
 			sudo service beprotb status
 
 
-### Create Apache Virtual Host 
+###                  Create Apache Virtual Host 
 
 2.10.1 Start by copying the file for the first domain:
 
