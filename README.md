@@ -86,7 +86,7 @@ Do operation
 		to:	  /var/www/beprotb	 
 
 
-2.3  Using chmod u+x scriptname make the application executable.
+2.3  Using chmod +x filename make the application executable.
 
 			sudo chmod +x BeproTB
 
@@ -95,13 +95,13 @@ Do operation
 
 			sudo ./BeproTB
 			
-2.5 show  running processes and kill this processes
+2.5 Show  running processes and kill then
 
 Sample : 
 
-		sudo ps aux | grep BeproTB
+		sudo ps aux | grep beprotb
 		
-			xxxx 18215 11.5 5.2 277244 108540 ? Sl 03:20 2:38 /var/www/beprotb/BeproTB
+			xxxx 18215 11.5 5.2 277244 108540 ? Sl 03:20 2:38 /var/www/beprotb/beprotb
 
 		sudo kill 18215
 			
