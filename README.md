@@ -94,11 +94,22 @@ Do operation
 2.4  Launching Your App on Linux . Performance test your app before launch as service.
 
 			sudo ./BeproTB
+			
+2.5 show  running processes and kill this processes
+
+Sample : 
+
+		sudo ps aux | grep BeproTB
+		
+			xxxx 18215 11.5 5.2 277244 108540 ? Sl 03:20 2:38 /var/www/beprotb/BeproTB
+
+		sudo kill 18215
+			
 
 
 ###               Create linux service			
 			
-2.5  create service definition file:
+2.6  create service definition file:
 	  
 	       /lib/systemd/system/beprotb.service
 		   
@@ -119,17 +130,17 @@ file context:
 					[Install]
 				WantedBy=bepro.target
 	  
-2.6  make folder /etc/systemd/system/bepro.target.wants
+2.7  make folder /etc/systemd/system/bepro.target.wants
 
-2.7  make service as enabled :
+2.8  make service as enabled :
 
 			sudo  systemctl enable /lib/systemd/system/beprotb.service
 			
-2.8 start service :
+2.9 start service :
 				
 			sudo service beprotb start
 
-2.9 check service status:
+2.10 check service status:
 
 			sudo service beprotb status	
 
@@ -146,12 +157,12 @@ you can use next command:
 
 ###                  Create Apache Virtual Host 
 
-2.10.1 Start by copying the file for the first domain:
+2.11.1 Start by copying the file for the first domain:
 
 	sudo cp /etc/apache2/sites-available/000-default.conf /etc/apache2/sites-available/beprotb.conf
 
 
-2.10.2 Edit site definition on the folder  /etc/apache2/sites-available
+2.11.2 Edit site definition on the folder  /etc/apache2/sites-available
 			
 		cd /etc/apache2/sites-available
 
@@ -166,11 +177,11 @@ file context:
 			ServerName beprotb.sgcombo.com
 		</VirtualHost>
 
-2.10.3 After you create virtual host file, you must enable them.
+2.11.3 After you create virtual host file, you must enable them.
 
 		sudo a2ensite beprotb.conf
 					
-2.10.4 Restart Apache service
+2.11.4 Restart Apache service
 
 		sudo service apache2 restart
 
