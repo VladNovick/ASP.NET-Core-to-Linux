@@ -53,7 +53,7 @@ Do operation
 	   
 1.2.3 - Tools -> Nuget Package Manager
 
-       find add remove package: 
+       find and remove package from project: 
 		       Microsoft.ApplicationInsights.AspNetCore.
        This package using for Microsoft Azure server. 
 			
