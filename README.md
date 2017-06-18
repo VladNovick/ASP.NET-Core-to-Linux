@@ -198,6 +198,8 @@ You can use command:
 
 ## Configure a service to run at startup .
 
+Those need an [Install] section with a WantedBy= that specifies the unit which that new service wants to become a dependency of (see man systemd.unit). Very commonly this is multi-user.target, which is roughly equivalent to start on runlevel in upstart; 
+
 Modify service definition:
 
  
@@ -221,16 +223,22 @@ Modify service definition:
 		   WantedBy=multi-user.target
 		   Alias=beprotb.service
 		   
-Reload system configuration
+key After=network.target -  this service run only after network group		   
+		   
+After modify serice description you must reload systemd manager configuration
 
 		sudo systemctl daemon-reload
 		
 Stop and start service:
 
 			sudo service beprotb stop
-			sudo service beprotb start
 			
-view service status:
+Start the service and enable at start up.			
+			
+		sudo systemctl start beprotb.service
+		sudo systemctl enable beprotb.service
+			
+Check if it's running::
 		
    
 		xxxx:~$ service beprotb status
