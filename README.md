@@ -198,7 +198,7 @@ You can use command:
 
 ## Configure a service to run at startup .
 
-Those need an [Install] section with a WantedBy= that specifies the unit which that new service wants to become a dependency of (see man systemd.unit). Very commonly this is multi-user.target, which is roughly equivalent to start on runlevel in upstart; 
+Those need an [Install] section with a WantedBy= that specifies the unit which that new service wants to become a dependency . Very commonly this is multi-user.target, which is roughly equivalent to start on runlevel in upstart; 
 
 Modify service definition:
 
