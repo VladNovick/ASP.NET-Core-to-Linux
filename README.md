@@ -196,7 +196,53 @@ You can use command:
 		sudo service apache2 status
 
 
+## Configure a service to run at startup .
 
+Modify service definition:
+
+ 
+		[Unit]
+			Description= UpStart Net Core App - BeproTB
+			After=network.target network-online.target
+			Wants=network-online.target
+
+		[Service]
+		   ExecStart=/var/www/beprotb2/BeproTB
+		   WorkingDirectory=/var/www/beprotb2
+		   StandardOutput=null
+		   Restart=always
+		   RestartSec= 120
+		   Restart=on-failure
+		   SystemlogIdentifier=beprotb
+		   KillMode=control-group
+		   Environment=ASPNETCORE_ENVIRONMENT=Production
+
+		[Install]
+		   WantedBy=multi-user.target
+		   Alias=beprotb.service
+		   
+Reload system configuration
+
+		sudo systemctl daemon-reload
+		
+Stop and start service:
+
+			sudo service beprotb stop
+			sudo service beprotb start
+			
+view service status:
+		
+   
+		xxxx:~$ service beprotb status
+		● beprotb.service - UpStart Net Core - BeproTB
+		   Loaded: loaded (/lib/systemd/system/beprotb.service; enabled; vendor preset:
+		   Active: active (running) since Sun 2017-06-18 10:47:07 UTC; 1h 32min ago
+		 Main PID: 3876 (BeproTB)
+			Tasks: 29
+		   Memory: 9.9G
+			  CPU: 15min 28.081s
+		   CGroup: /system.slice/beprotb.service
+				   └─3876 /var/www/beprotb2/BeproTB
 
 
 
