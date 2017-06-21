@@ -1,0 +1,17 @@
+[Unit]
+   Description= UpStart Net Core App - BeproTB
+   After=network.target network-online.target
+   Wants=network-online.target
+[Service]
+   ExecStart=/var/www/beprotb2/BeproTB
+   WorkingDirectory=/var/www/beprotb2
+   StandardOutput=null
+   Restart=always
+   RestartSec= 120
+   Restart=on-failure
+   SystemlogIdentifier=beprotb
+   KillMode=control-group
+   Environment=ASPNETCORE_ENVIRONMENT=Production
+[Install]
+   WantedBy=multi-user.target
+   Alias=beprotb.service

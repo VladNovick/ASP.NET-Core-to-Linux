@@ -1,0 +1,10 @@
+[Unit]
+	Description= BeproTB
+[Service]
+	ExecStart=/var/www/beprotb/BeproTB
+	Restart=always
+	RestartSec=60
+	SyslogIdentifier=beprotb
+	Environment=ASPNETCORE_ENVIRONMENT=Production
+[Install]
+	WantedBy=bepro.target
