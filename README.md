@@ -11,5 +11,5 @@ If you run ASP.NET Core Application as a Service on Linux you got new features f
 * Auto-restart 
 * New address for web service 
 
-[For more details, please look at this page (  WIKI ) ](https://github.com/VladNovick/ASP.NET-Core-to-Linux/wiki)
+[For more details, please look at this page (  WIKI ) ](https://github.com/Vladimir-Novick/ASP.NET-Core-to-Linux/wiki)
 
